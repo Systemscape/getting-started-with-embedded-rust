@@ -1,0 +1,5 @@
+[book]
+authors = ["Joël Schulz-Andres"]
+language = "en"
+src = "src"
+title = "Getting Started With Embedded Rust"
