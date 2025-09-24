@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Second Exercise - Getting Started With Embedded Rust 📟🦀</title>
+        <title>Setting Up Your Rust Embedded Toolchain - Getting Started With Embedded Rust 📟🦀</title>
 
 
         <!-- Custom HTML head -->
@@ -12,34 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex.js";
+            window.path_to_searchindex_js = "../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -106,7 +106,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -141,7 +141,7 @@
                     <h1 class="menu-title">Getting Started With Embedded Rust 📟🦀</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -175,17 +175,36 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="second-exercise"><a class="header" href="#second-exercise">Second Exercise</a></h1>
+                        <h1 id="setting-up-your-rust-embedded-toolchain"><a class="header" href="#setting-up-your-rust-embedded-toolchain">Setting Up Your Rust Embedded Toolchain</a></h1>
+<p>Before writing any code, we need to configure our development environment for cross-compiling to the RP2350 microcontroller. The RP2350 is a <strong>dual-core ARM Cortex-M33</strong> microcontroller (with some special features we’ll discuss later). Rust, via <code>rustup</code>, can target this architecture easily.</p>
+<ol>
+<li><strong>Install Rust (stable)</strong> if you haven’t already, via <a href="https://rustup.rs/">rustup</a>. Ensure you also have Cargo, which comes with Rust.</li>
+<li><strong>Update Rust</strong> to the latest stable version and self-update rustup (to avoid any surprises):
+<pre><code class="language-bash">rustup self update  
+rustup update stable
+</code></pre>
+</li>
+<li><strong>Add the target for RP2350:</strong> The Cortex-M33 core uses the ARMv8-M architecture with hardware floating-point. The correct Rust target triple is <code>thumbv8m.main-none-eabihf</code>. We’ll add that, and for completeness also add the ARMv6-M target used by older Pico (RP2040) and the RISC-V target (the RP2350 has a RISC-V mode, as we’ll mention). Run:
+<pre><code class="language-bash">rustup target add thumbv6m-none-eabi # (for RP2040, if needed)
+rustup target add thumbv8m.main-none-eabihf # RP2350 Arm Cortex-M33
+rustup target add riscv32imac-unknown-none-elf # (RP2350 RISC-V mode)
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The RP2350 is unique in that each core can actually run as either an ARM Cortex-M33 or a RISC-V core (Hazard3) – a novel feature where the core type can be swapped at runtime . In this guide we’ll focus on the standard Cortex-M (ARM) mode. The RISC-V target is added just in case and for future exploration.</p>
+</blockquote>
+</li>
+</ol>
+<p>With these tools you will already be able to turn valid Rust code into a <code>.elf</code> file, which you can then flash onto the RP2350 using the methods described in the next chapter.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="exercise1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../flashing/flashing_rust_is_easier_than_brewing_coffee.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="wrapup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../flashing/rp2350_mcu_flashing_methods.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -195,11 +214,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="exercise1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../flashing/flashing_rust_is_easier_than_brewing_coffee.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="wrapup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../flashing/rp2350_mcu_flashing_methods.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -214,13 +233,13 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
