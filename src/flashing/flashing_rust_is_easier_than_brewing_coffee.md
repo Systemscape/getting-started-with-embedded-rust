@@ -1,0 +1,3 @@
+# Flashing Rust is Easier Than Brewing Coffee. ☕
+
+Our first goal is to show that getting Rust code running on a real microcontroller is **surprisingly simple** – often just a few commands. We’ll set up the toolchain for the RP2350, compile a “blinky” program, and flash it to the board. By the end of this chapter, you’ll have an LED blinking on actual hardware, and you’ll see that putting Rust on a microchip is _literally easier than making a cup of coffee._
