@@ -2,7 +2,7 @@
 
 ## Method 1: RP2350-built-in bootloader via drag & drop
 
-As described in the previous chapter, you don't need to install any tools to flash the RP2350 using the RP2350-built-in bootloader if you use our online conversion method at [elf2uf2.yrust.de](https://elf2uf2.yrust.de/). If you prefer to convert it locally though, you will need to install `picotool`, as described in the next paragraph.
+As described in the previous chapter, you don't need to install any tools to flash the RP2350 using the RP2350-built-in bootloader if you use our online conversion method at <a href="https://elf2uf2.yrust.de/" target="_blank">elf2uf2.yrust.de</a>. If you prefer to convert it locally though, you will need to install `picotool`, as described in the next paragraph.
 
 ## Method 2: RP2350-built-in bootloader with picotool
 
